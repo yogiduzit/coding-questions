@@ -10,24 +10,32 @@ package codewars;
 public class PositionAverage {
 	public static double posAverage(String s) {
 		double num = 0;
-		 String[] numbers = s.split(", ");
+		String[] numbers = s.split(", ");
+		int combs = (numbers.length * (numbers.length - 1)) / 2;
 		for (int i = 0; i < numbers.length - 1; i++) {
-			 num += getUniqueNumbers(numbers[i], numbers[i + 1]);
+			for (int j = i; j < numbers.length; j++) {
+			   num += getUniqueNumbers(numbers[i], numbers[j]);
+			   
+			}
 		 }
-		 num += getUniqueNumbers(numbers[0], numbers[numbers.length - 1]);
-	    return 200 * num / (numbers.length * numbers.length - 1);
+		
+		 num += getUniqueNumbers(numbers[numbers.length - 1], numbers[0]);
+		 System.out.println(num);
+	    return num * 100 / (45 * 10 * 6);
     }
 	public static int compareCommonNumbers(String a, String b) {
 		int count = 0;
 		
 		return count;
 	}
-	private static int getUniqueNumbers(String a, String b) {
-		int count = 0;
+	private static double getUniqueNumbers(String a, String b) {
+		double count = 0;
 		for (int i = 0; i < a.length(); i++) {
 			char z = a.charAt(i);
+			
 			int indexOfb = b.trim().indexOf(z, i);
 			int indexOfa = a.trim().indexOf(z, i);
+			
 			if (indexOfa == indexOfb && indexOfa != -1 && indexOfb != -1) {
 				count += 1;
 			}
